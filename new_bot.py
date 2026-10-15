@@ -51,6 +51,24 @@ async def testa_o_croce(ctx):
     possibilità = ["testa", "croce"]
     await ctx.send(random.choice(possibilità))
     
+@bot.command()
+async def info(ctx):
+    await ctx.send("Ciao! Questo è un server creato appositamente per testare il mio bot, scrivi !help per vedere tutti i comandi di cui è dotato!")
+    
+@bot.command()
+async def aiuto(ctx):
+    await ctx.send("!ciao: stampa ciao")
+    await ctx.send("!arrivederci: stampa arrivederci")
+    await ctx.send("!moltiplica_parola str int: moltiplica una parola per un tot di volte")
+    await ctx.send("!somma int int: esegue la somma tra due interi")
+    await ctx.send("!genera_password int: stampa una password con un tot di caratteri")
+    await ctx.send("!emoji: stampa un emoji casuale")
+    await ctx.send("!testa_o_croce: scrive o testa o croce")
+    await ctx.send("!info: stampa le informazioni del server")
+    await ctx.send("!aiuto: scrive tutti i comandi che può eseguire il bot")
+    
+
+    
 
     
 
