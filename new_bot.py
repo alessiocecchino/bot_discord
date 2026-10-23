@@ -1,5 +1,7 @@
 import discord
 import random
+import os
+import requests
 from settings import settings
 from discord.ext import commands
 from bot_logic import gen_password
@@ -13,6 +15,8 @@ lista_emoji = [
     "🍕", "🎮", "💎", "🦊", "🌈",
     "⚡", "🎯", "🐉", "🌙", "🎉"
 ]
+
+mems_images = ["bot/images/mem1.webp","bot/images/mem10.webp","bot/images/mem5.webp","bot/images/mem3.webp"]
  
 @bot.event
 async def on_ready():
@@ -68,9 +72,24 @@ async def aiuto(ctx):
     await ctx.send("!aiuto: scrive tutti i comandi che può eseguire il bot")
     
 
+@bot.command()
+async def meme(ctx):
+    image_random = random.choice(os.listdir(r"bot\images"))
+    print(image_random)
+    with open(f"bot\images\{image_random}", 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
     
+def get_meme_image_url():    
+    url = 'https://meme-api.com/gimme'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
 
+
+@bot.command()
+async def meme_api(ctx):
+    image_url = get_meme_image_url()
+    await ctx.send(image_url)
     
-
-
 bot.run(settings["TOKEN"])
